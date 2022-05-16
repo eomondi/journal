@@ -94,11 +94,19 @@ app.post('/compose', function(req, res) {
 });
 
 app.get('/posts/:postName', function(req, res) {
+  let homeActivity = "";
+  let writeActivity = "";
+  let aboutActivity = "";
+  let contactActivity = "";
   for (var i = 0; i < posts.length; i++) {
     if (_.lowerCase(posts[i].blogTitle) === _.lowerCase(req.params.postName)) {
       res.render("post", {
         requestedTitle: _.startCase(_.toLower(posts[i].blogTitle)),
-        requestedPost: posts[i].blogBody
+        requestedPost: posts[i].blogBody,
+        homeMenuLink: homeActivity,
+        writeMenuLink: writeActivity,
+        aboutMenuLink: aboutActivity,
+        contactMenuLink: contactActivity
       });
     }
   }
